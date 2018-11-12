@@ -12,7 +12,7 @@ namespace DataAccess
     {
         private string connectionString;
 
-        public string ConnectionString
+        protected string ConnectionString
         {
             get { return connectionString; }
             set { connectionString = value; }
