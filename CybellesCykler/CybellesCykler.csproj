@@ -102,7 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entities\Entities.csproj">
-      <Project>{283e30db-1ff8-48b6-a8e5-0c4ebbd2ded3}</Project>
+      <Project>{76be1415-859d-4639-ae06-22b18dd1ab6e}</Project>
       <Name>Entities</Name>
     </ProjectReference>
   </ItemGroup>

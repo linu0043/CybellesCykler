@@ -63,7 +63,7 @@ namespace Entities
 
         public override string ToString()
         {
-            return $"Order ID: {id}, Rentee: {rentee}";
+            return $"Order ID: {id}, Rentee: {rentee.ToString()}";
         }
     }
 }

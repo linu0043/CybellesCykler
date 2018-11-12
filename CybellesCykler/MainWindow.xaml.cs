@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Entities;
+using System.Collections.ObjectModel;
+
 namespace CybellesCykler
 {
     /// <summary>
@@ -19,22 +22,29 @@ namespace CybellesCykler
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<Rentee> RenteeList { get; }
+        public ObservableCollection<Bike> BikeList { get; }
+
         public MainWindow()
         {
+            RenteeList = new ObservableCollection<Rentee>();
+            BikeList = new ObservableCollection<Bike>();
+
             InitializeComponent();
+            DataContext = this;
         }
-
-        private void BtnShowRentees_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BtnShowBikes_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+        
         private void BtnShowOrders_Click(object sender, RoutedEventArgs e)
+        {
+            Orders window = new Orders();
+
+            if (window.ShowDialog() == true)
+            {
+
+            }
+        }
+
+        private void DtgSelected_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

@@ -6,14 +6,38 @@
         xmlns:local="clr-namespace:CybellesCykler"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="535.271">
-    <Grid>
-        <Button x:Name="BtnShowRentees" Content="Renters" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="BtnShowRentees_Click"/>
-        <Button x:Name="BtnShowBikes" Content="Bikes" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="75" Click="BtnShowBikes_Click"/>
-        <Button x:Name="BtnShowOrders" Content="Orders" HorizontalAlignment="Left" Margin="364,10,0,0" VerticalAlignment="Top" Width="75" Click="BtnShowOrders_Click"/>
-        <Button Content="Add" HorizontalAlignment="Left" Margin="444,37,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="444,60,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="444,84,0,0" VerticalAlignment="Top" Width="75"/>
-        <DataGrid x:Name="DtgSelected" HorizontalAlignment="Left" Height="277" Margin="10,34,0,0" VerticalAlignment="Top" Width="429"/>
+  <Grid>
+    <Button x:Name="BtnShowOrders" Content="Orders" HorizontalAlignment="Left" Margin="364,10,0,0" VerticalAlignment="Top" Width="75" Click="BtnShowOrders_Click"/>
+    <Button Content="Add" HorizontalAlignment="Left" Margin="444,37,0,0" VerticalAlignment="Top" Width="75"/>
+    <Button Content="Delete" HorizontalAlignment="Left" Margin="444,60,0,0" VerticalAlignment="Top" Width="75"/>
+    <Button Content="Edit" HorizontalAlignment="Left" Margin="444,84,0,0" VerticalAlignment="Top" Width="75"/>
+    <TabControl HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="429">
+      <TabItem Header="Renters">
+        <Grid Background="#FFE5E5E5">
+          <DataGrid HorizontalAlignment="Left" AutoGenerateColumns="False" Height="271" VerticalAlignment="Top" Width="423" ItemsSource="{Binding Path=RenteeList}">
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}"/>
+              <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}"/>
+              <DataGridTextColumn Header="Address" Binding="{Binding Path=Address}"/>
+              <DataGridTextColumn Header="Phone" Binding="{Binding Path=PhoneNumber}"/>
+              <DataGridTextColumn Header="Registered" Binding="{Binding Path=RegisterDate}"/>
+            </DataGrid.Columns>
+          </DataGrid>
+        </Grid>
+      </TabItem>
+      <TabItem Header="Bikes">
+        <Grid Background="#FFE5E5E5">
+          <DataGrid HorizontalAlignment="Left" Height="271" VerticalAlignment="Top" Width="423" ItemsSource="{Binding Path=BikeList}">
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}"/>
+              <DataGridTextColumn Header="Price Per Day" Binding="{Binding Path=PricePerDay}"/>
+              <DataGridTextColumn Header="Kind" Binding="{Binding Path=Kind}"/>
+              <DataGridTextColumn Header="Description" Binding="{Binding Path=BikeDesc}"/>
+            </DataGrid.Columns>
+          </DataGrid>
+        </Grid>
+      </TabItem>
+    </TabControl>
 
-    </Grid>
+  </Grid>
 </Window>
