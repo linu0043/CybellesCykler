@@ -26,13 +26,37 @@ namespace Business
         /// Gets all entities from the database that is the same as entity
         /// </summary>
         /// <param name="entity">The object to get. Can be either "rentee", "order", or "bike"</param>
-        /// <returns></returns>
+        /// <returns>Returns a list of all entities based on entity</returns>
         public List<IPersistable> GetEntities(string entity)
         {
             List<IPersistable> entities = new List<IPersistable>();
 
-
-
+            
+            switch (entity)
+            {
+                case "rentee":
+                    foreach (Rentee rentee in handler.GetAllRentees())
+                    {
+                        entities.Add(rentee);
+                    }
+                    break;
+                case "bike":
+                    foreach (Bike bike in handler.GetAllBikes())
+                    {
+                        entities.Add(bike);
+                    }
+                    break;
+                case "order":
+                    foreach (Order order in handler.GetAllOrders())
+                    {
+                        entities.Add(order);
+                    }
+                    break;
+                default:
+                    entities = null;
+                    break;
+            }
+            
             return entities;
         }
         /// <summary>
@@ -40,7 +64,7 @@ namespace Business
         /// </summary>
         /// <param name="entity">The object to get. Can be either "rentee", "order", or "bike"</param>
         /// <param name="id">The id of the specific object</param>
-        /// <returns></returns>
+        /// <returns>Returne one entity based on the parameters</returns>
         public IPersistable GetEntity(string entity, int id)
         {
             List<IPersistable> entities = new List<IPersistable>();
@@ -62,7 +86,11 @@ namespace Business
 
             return entities[0];
         }
-
+        /// <summary>
+        /// Creates a new entity from the object given
+        /// </summary>
+        /// <param name="entity">The object to save in the database</param>
+        /// <returns>Returns true if the object was successfully added, otherwise it returns false</returns>
         public bool NewEntity(IPersistable entity)
         {
             bool result = false;
@@ -83,9 +111,29 @@ namespace Business
             return result;
         }
 
-        //public bool UpdateEntity(IPersistable entity)
-        //{
+        /// <summary>
+        /// Updates an entity from the object given using its id
+        /// </summary>
+        /// <param name="entity">The object to update in the database</param>
+        /// <returns>Returns true if the object was successfully updated, otherwise it returns false</returns>
+        public bool UpdateEntity(IPersistable entity)
+        {
+            bool result = false;
 
-        //}
+            if (entity is Bike)
+            {
+                result = handler.UpdateBike(entity as Bike);
+            }
+            else if (entity is Order)
+            {
+                result = handler.UpdateOrder(entity as Order);
+            }
+            else if (entity is Rentee)
+            {
+                result = handler.UpdateRentee(entity as Rentee);
+            }
+
+            return result;
+        }
     }
 }
