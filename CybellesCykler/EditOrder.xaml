@@ -5,25 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CybellesCykler"
         mc:Ignorable="d"
-        Title="EditOrder" Height="241" Width="385">
+        Title="EditOrder" Height="213" Width="385">
   <Grid>
-    <GroupBox Header="Information" HorizontalAlignment="Left" Height="158" Margin="10,10,0,0" VerticalAlignment="Top" Width="345">
-      <Grid HorizontalAlignment="Left" Height="144" VerticalAlignment="Top" Width="335" Margin="0,0,-2,-8">
+    <GroupBox Header="Information" HorizontalAlignment="Left" Height="126" Margin="10,10,0,0" VerticalAlignment="Top" Width="345">
+      <Grid HorizontalAlignment="Left" Width="335" Margin="0,0,-2,-3">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="9*"/>
           <ColumnDefinition Width="35*"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="Lejer" Content="Lejer:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Lejer_Copy" Content="Udlånsdato:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Lejer_Copy1" Content="Afleveringsdato:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <Label x:Name="Lejer_Copy2" Content="Cykel: " HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" ItemsSource="{Binding Path=Rentees}" Margin="53,14,0,0" VerticalAlignment="Top" Width="228" Grid.ColumnSpan="2"/>
-        <ComboBox HorizontalAlignment="Left" ItemsSource="{Binding Path=Bikes}" Margin="59,107,0,0" VerticalAlignment="Top" Width="222" Grid.ColumnSpan="2"/>
-        <DatePicker Grid.Column="1" SelectedDate="{Binding Path=Order.RentDate}" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Width="202"/>
-        <DatePicker Grid.Column="1" SelectedDate="{Binding Path=Order.DeliveryDate}" HorizontalAlignment="Left" Margin="37,74,0,0" VerticalAlignment="Top" Width="175"/>
+        <Label x:Name="Lejer_Copy1" Content="Afleveringsdato:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label x:Name="Lejer_Copy2" Content="Cykel: " HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbRentee" HorizontalAlignment="Left" ItemsSource="{Binding Path=Rentees}" Margin="53,14,0,0" VerticalAlignment="Top" Width="228" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="cmbBikes" HorizontalAlignment="Left" ItemsSource="{Binding Path=Bikes}" Margin="59,72,0,0" VerticalAlignment="Top" Width="222" Grid.ColumnSpan="2"/>
+        <DatePicker x:Name="dpDeliver" Grid.Column="1" SelectedDate="{Binding Path=Order.DeliveryDate}" HorizontalAlignment="Left" Margin="42,41,0,0" VerticalAlignment="Top" Width="170"/>
       </Grid>
     </GroupBox>
-    <Button Content="Opdater Odre" HorizontalAlignment="Left" Margin="10,173,0,0" VerticalAlignment="Top" Width="99"/>
+    <Button x:Name="btnUpdate" Content="Opdater Ordre" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top" Width="99" Click="btnUpdate_Click"/>
 
   </Grid>
 </Window>

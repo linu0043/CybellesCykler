@@ -74,6 +74,7 @@ namespace CybellesCykler
                         if (dc.NewEntity(new Order(dtgBikes.SelectedItem as Bike, dtgRentees.SelectedItem as Rentee, DateTime.Now, (DateTime)dpDelivery.SelectedDate, 1)) == true)
                         {
                             MessageBox.Show("Order created!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                            this.DialogResult = true;
                         }
                         else
                         {

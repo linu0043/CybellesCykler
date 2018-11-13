@@ -41,7 +41,8 @@ namespace CybellesCykler
 
             if (window.ShowDialog() == true)
             {
-
+                FillOrderList();
+                lbxOrders.Items.Refresh();
             }
         }
 
@@ -90,7 +91,11 @@ namespace CybellesCykler
 
         private void FillOrderList()
         {
-            OrderList = new ObservableCollection<IPersistable>(dc.GetEntities("order"));
+            OrderList.Clear();
+            foreach (var order in dc.GetEntities("order"))
+            {
+                OrderList.Add(order);
+            }
         }
     }
 }

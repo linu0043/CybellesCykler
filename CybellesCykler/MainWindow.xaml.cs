@@ -46,9 +46,16 @@ namespace CybellesCykler
             }
         }
 
-        private void DtgSelected_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            if (tabSelect.SelectedIndex == 0)
+            {
+                MessageBox.Show("lol");
+            }
+            else
+            {
+                MessageBox.Show("skede");
+            }
         }
     }
 }
