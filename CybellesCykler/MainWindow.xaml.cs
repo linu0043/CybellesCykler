@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Entities;
+using Business;
 using System.Collections.ObjectModel;
 
 namespace CybellesCykler
@@ -24,6 +25,7 @@ namespace CybellesCykler
     {
         public ObservableCollection<Rentee> RenteeList { get; }
         public ObservableCollection<Bike> BikeList { get; }
+        DataController dc = new DataController(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CykelDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
         public MainWindow()
         {
@@ -32,6 +34,8 @@ namespace CybellesCykler
 
             InitializeComponent();
             DataContext = this;
+
+            dc.GetEntity("order", 1);
         }
         
         private void BtnShowOrders_Click(object sender, RoutedEventArgs e)

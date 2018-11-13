@@ -17,7 +17,12 @@ namespace DataAccess
         public DBHandler(string constring) : base(constring)
         {
         }
-
+        #region Get database
+        /// <summary>
+        /// Gets a rentee from the database
+        /// </summary>
+        /// <param name="id">The id of the rentee in the database</param>
+        /// <returns>Returns a rentee</returns>
         public Rentee GetRentee(int id)
         {
             string query = $"select * from Renters where id={id}";
@@ -29,6 +34,11 @@ namespace DataAccess
 
             return rentee;
         }
+        /// <summary>
+        /// Gets a bike from the database
+        /// </summary>
+        /// <param name="id">The id of the bike in the database</param>
+        /// <returns>Returns a bike</returns>
         public Bike GetBike(int id)
         {
             string query = $"select * from Bikes where id={id}";
@@ -36,21 +46,154 @@ namespace DataAccess
             DataSet data = SelectDataFromDB(query);
             DataRow row = data.Tables[0].Rows[0];
 
-            bike = new Bike((decimal)row["pricePerDay"], (string)row["bikeDescription"], (BikeKind)row["bikeType"], (int)row["id"]);
+            bike = new Bike((decimal)row["pricePerDay"], (string)row["bikeDescription"], (BikeKind)Enum.Parse(typeof(BikeKind), (string)row["bikeType"]), (int)row["id"]);
 
             return bike;
         }
-        //public Order GetOrder(int id)
-        //{
-        //    string query = $"select * from Orders where id={id}";
-        //    DataSet data = SelectDataFromDB(query);
-        //    string queryTwo = $"select * from Bikes where id=Orders";
-        //    Order order;
-        //    DataRow row = data.Tables[0].Rows[0];
+        /// <summary>
+        /// Gets an order from the database
+        /// </summary>
+        /// <param name="id">The id of the order in the database</param>
+        /// <returns>Returns an order</returns>
+        public Order GetOrder(int id)
+        {
+            string query = $@"select * from Orders where id={id}";
+            DataSet data = SelectDataFromDB(query);
+            DataRow row = data.Tables[0].Rows[0];
 
-        //    order = new Order();
+            Bike orderBike = GetBike((int)row["bikeID"]);
+            Rentee orderRentee = GetRentee((int)row["renteeID"]);
+            Order order = new Order(orderBike, orderRentee, (DateTime)row["orderDate"], (DateTime)row["deliveryDate"], (int)row["id"]);
 
-        //    return order;
-        //}
+            return order;
+        }
+#endregion
+
+        #region Create database
+        /// <summary>
+        /// Creates a new rentee in the database
+        /// </summary>
+        /// <param name="rentee">The rentee to add to the database</param>
+        /// <returns>Returns true if the object has been inserted into the database, otherwise it returns false</returns>
+        public bool NewRentee(Rentee rentee)
+        {
+            string query = $"insert into Renters(name, phoneNumber, address, registerDate) values ('{rentee.Name}', '{rentee.PhoneNumber}', '{rentee.Address}', '{rentee.RegisterDate}')";
+            bool result;
+
+            if (InsertDataToDB(query) > 0)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Creates a new bike in the database
+        /// </summary>
+        /// <param name="bike">The bike to add to the database</param>
+        /// <returns>Returns true if the object has been inserted into the database, otherwise it returns false</returns>
+        public bool NewBike(Bike bike)
+        {
+            string query = $"insert into Bikes(bikeDescription, pricePerDay, bikeType) values ('{bike.BikeDesc}', '{bike.PricePerDay}', '{bike.Kind}')";
+            bool result;
+
+            if (InsertDataToDB(query) > 0)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Creates a new order in the database
+        /// </summary>
+        /// <param name="order">The order to add to the database</param>
+        /// <returns>Returns true if the object has been inserted into the database, otherwise it returns false</returns>
+        public bool NewOrder(Order order)
+        {
+            string query = $"insert into Orders(deliveryDate, orderDate, bikeID, renteeID) values ('{order.DeliveryDate}', '{order.RentDate}', '{order.Bike.ID}', '{order.Rentee.ID}')";
+            bool result;
+
+            if (InsertDataToDB(query) > 0)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+#endregion
+
+        #region Update Database
+        public bool UpdateRentee(Rentee rentee)
+        {
+            string query = $"update Renters set name = '{rentee.Name}', phoneNumber = '{rentee.PhoneNumber}', address = '{rentee.Address}', registerDate = '{rentee.RegisterDate}')";
+            bool result;
+
+            if (InsertDataToDB(query) > 0)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Creates a new bike in the database
+        /// </summary>
+        /// <param name="bike">The bike to add to the database</param>
+        /// <returns>Returns true if the object has been inserted into the database, otherwise it returns false</returns>
+        public bool UpdateBike(Bike bike)
+        {
+            string query = $"update Bikes set bikeDescription = '{bike.BikeDesc}', pricePerDay = '{bike.PricePerDay}', bikeType = '{bike.Kind}')";
+            bool result;
+
+            if (InsertDataToDB(query) > 0)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Creates a new order in the database
+        /// </summary>
+        /// <param name="order">The order to add to the database</param>
+        /// <returns>Returns true if the object has been inserted into the database, otherwise it returns false</returns>
+        public bool UpdateOrder(Order order)
+        {
+            string query = $"update Orders set deliveryDate = '{order.DeliveryDate}', orderDate = '{order.RentDate}', bikeID = '{order.Bike.ID}', renteeID = '{order.Rentee.ID}')";
+            bool result;
+
+            if (InsertDataToDB(query) > 0)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+#endregion
     }
 }
