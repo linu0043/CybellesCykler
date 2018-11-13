@@ -135,5 +135,30 @@ namespace Business
 
             return result;
         }
+
+        /// <summary>
+        /// Deletes an entity from the database
+        /// </summary>
+        /// <param name="entity">The object to delete in the database</param>
+        /// <returns>Returns true if the object was successfully deleted, otherwise it returns false</returns>
+        public bool DeleteEntity(IPersistable entity)
+        {
+            bool result = false;
+
+            if (entity is Bike)
+            {
+                result = handler.DeleteBike(entity as Bike);
+            }
+            else if (entity is Order)
+            {
+                result = handler.DeleteOrder(entity as Order);
+            }
+            else if (entity is Rentee)
+            {
+                result = handler.DeleteRentee(entity as Rentee);
+            }
+
+            return result;
+        }
     }
 }

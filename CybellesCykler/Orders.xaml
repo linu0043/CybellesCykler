@@ -10,8 +10,8 @@
     <ListBox x:Name="lbxOrders" ItemsSource="{Binding Path=OrderList}" HorizontalAlignment="Left" Height="329" Margin="10,36,0,0" VerticalAlignment="Top" Width="199"/>
     <Label Content="Orders" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="138"/>
     <Button x:Name="btnCreate" Content="Opret" HorizontalAlignment="Left" Margin="10,370,0,0" VerticalAlignment="Top" Width="59" Click="btnCreate_Click"/>
-    <Button x:Name="btnEdit" Content="Rediger" HorizontalAlignment="Left" Margin="80,370,0,0" VerticalAlignment="Top" Width="59"/>
-    <Button x:Name="btnDelete" Content="Slet" HorizontalAlignment="Left" Margin="150,370,0,0" VerticalAlignment="Top" Width="59"/>
+    <Button x:Name="btnEdit" Content="Rediger" HorizontalAlignment="Left" Margin="80,370,0,0" VerticalAlignment="Top" Width="59" Click="btnEdit_Click"/>
+    <Button x:Name="btnDelete" Content="Slet" HorizontalAlignment="Left" Margin="150,370,0,0" VerticalAlignment="Top" Width="59" Click="btnDelete_Click"/>
     <GroupBox Header="Information" HorizontalAlignment="Left" Height="377" Margin="214,36,0,0" VerticalAlignment="Top" Width="263">
       <Grid DataContext="{Binding Path=SelectedItem, ElementName=lbxOrders}" HorizontalAlignment="Left" Height="353" VerticalAlignment="Top" Width="253" Margin="0,0,-2,0">
         <Grid.ColumnDefinitions>
@@ -27,13 +27,13 @@
         <Label x:Name="Lejer_Copy5" Content="Pris pr. dag: " HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Label x:Name="Lejer_Copy6" Content="Cykelbeskrivelse: " HorizontalAlignment="Left" Margin="10,227,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <TextBlock x:Name="txtRentee" Text="{Binding Path=Rentee.Name}" HorizontalAlignment="Left" Margin="48,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195" Grid.ColumnSpan="2"/>
-        <TextBlock x:Name="txtAddress" Text="{Binding Path=Rentee.Address}" HorizontalAlignment="Left" Margin="29,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Grid.Column="1"/>
-        <TextBlock x:Name="txtPhone" Text="{Binding Path=Rentee.PhoneNumber}" HorizontalAlignment="Left" Margin="22,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Grid.Column="1"/>
-        <TextBlock x:Name="txtRentDate" Text="{Binding Path=RentDate, StringFormat=d}" HorizontalAlignment="Left" Margin="54,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137" Grid.Column="1"/>
-        <TextBlock x:Name="txtDeliverDate" Text="{Binding Path=DeliveryDate, StringFormat=d}" HorizontalAlignment="Left" Margin="92,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="99" Grid.Column="1"/>
+        <TextBlock x:Name="txtAddress" Text="{Binding Path=Rentee.Address}" HorizontalAlignment="Left" Margin="16,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1"/>
+        <TextBlock x:Name="txtPhone" Text="{Binding Path=Rentee.PhoneNumber}" HorizontalAlignment="Left" Margin="12,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Grid.Column="1"/>
+        <TextBlock x:Name="txtRentDate" Text="{Binding Path=RentDate, StringFormat=d}" HorizontalAlignment="Left" Margin="36,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Grid.Column="1"/>
+        <TextBlock x:Name="txtDeliverDate" Text="{Binding Path=DeliveryDate, StringFormat=d}" HorizontalAlignment="Left" Margin="54,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137" Grid.Column="1"/>
         <TextBlock x:Name="txtBike" Text="{Binding Path=Bike.Kind}" HorizontalAlignment="Left" Margin="6,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185" Grid.Column="1"/>
-        <TextBlock x:Name="txtPrice" Text="{Binding Path=Bike.PricePerDay}" HorizontalAlignment="Left" Margin="57,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" Grid.Column="1"/>
-        <TextBlock x:Name="txtDesc" Text="{Binding Path=Bike.BikeDesc}" HorizontalAlignment="Left" Margin="10,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="86" Width="233" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="txtPrice" Text="{Binding Path=Bike.PricePerDay}" HorizontalAlignment="Left" Margin="36,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Grid.Column="1"/>
+        <TextBlock x:Name="txtDesc" Text="{Binding Path=Bike.BikeDesc}" HorizontalAlignment="Left" Margin="10,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="90" Width="233" Grid.ColumnSpan="2"/>
       </Grid>
     </GroupBox>
     <Button x:Name="btnWeather" Content="Vejrudsigt" HorizontalAlignment="Left" Margin="10,394,0,0" VerticalAlignment="Top" Width="59"/>

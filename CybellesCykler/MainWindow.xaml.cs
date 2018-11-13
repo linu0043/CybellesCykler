@@ -34,13 +34,11 @@ namespace CybellesCykler
             
             InitializeComponent();
             DataContext = this;
-
-            dc.GetEntity("order", 1);
         }
         
         private void BtnShowOrders_Click(object sender, RoutedEventArgs e)
         {
-            Orders window = new Orders();
+            Orders window = new Orders(RenteeList, BikeList);
 
             if (window.ShowDialog() == true)
             {

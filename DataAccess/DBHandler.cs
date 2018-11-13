@@ -26,11 +26,19 @@ namespace DataAccess
         public Rentee GetRentee(int id)
         {
             string query = $"select * from Renters where id={id}";
-            Rentee rentee;
+            DataRow row;
             DataSet data = SelectDataFromDB(query);
-            DataRow row = data.Tables[0].Rows[0];
+            Rentee rentee;
+            if (data.Tables[0].Rows[0] != null)
+            {
+                row = data.Tables[0].Rows[0];
 
-            rentee = new Rentee((string)row["name"], (string)row["address"], (string)row["phoneNumber"], (DateTime)row["registerDate"], (int)row["id"]);
+                rentee = new Rentee((string)row["name"], (string)row["address"], (string)row["phoneNumber"], (DateTime)row["registerDate"], (int)row["id"]);
+            }
+            else
+            {
+                rentee = null;
+            }
 
             return rentee;
         }
@@ -42,11 +50,19 @@ namespace DataAccess
         public Bike GetBike(int id)
         {
             string query = $"select * from Bikes where id={id}";
-            Bike bike;
+            DataRow row;
             DataSet data = SelectDataFromDB(query);
-            DataRow row = data.Tables[0].Rows[0];
+            Bike bike;
+            if (data.Tables[0].Rows[0] != null)
+            {
+                row = data.Tables[0].Rows[0];
 
-            bike = new Bike((decimal)row["pricePerDay"], (string)row["bikeDescription"], (BikeKind)Enum.Parse(typeof(BikeKind), (string)row["bikeType"]), (int)row["id"]);
+                bike = new Bike((decimal)row["pricePerDay"], (string)row["bikeDescription"], (BikeKind)Enum.Parse(typeof(BikeKind), (string)row["bikeType"]), (int)row["id"]);
+            }
+            else
+            {
+                bike = null;
+            }
 
             return bike;
         }
@@ -58,12 +74,21 @@ namespace DataAccess
         public Order GetOrder(int id)
         {
             string query = $"select * from Orders where id={id}";
+            DataRow row;
             DataSet data = SelectDataFromDB(query);
-            DataRow row = data.Tables[0].Rows[0];
+            Order order;
+            if (data.Tables[0].Rows[0] != null)
+            {
+                row = data.Tables[0].Rows[0];
 
-            Bike orderBike = GetBike((int)row["bikeID"]);
-            Rentee orderRentee = GetRentee((int)row["renteeID"]);
-            Order order = new Order(orderBike, orderRentee, (DateTime)row["orderDate"], (DateTime)row["deliveryDate"], (int)row["id"]);
+                Bike orderBike = GetBike((int)row["bikeID"]);
+                Rentee orderRentee = GetRentee((int)row["renteeID"]);
+                order = new Order(orderBike, orderRentee, (DateTime)row["orderDate"], (DateTime)row["deliveryDate"], (int)row["id"]);
+            }
+            else
+            {
+                order = null;
+            }
 
             return order;
         }
@@ -261,6 +286,72 @@ namespace DataAccess
         public bool UpdateOrder(Order order)
         {
             string query = $"update Orders set deliveryDate = '{order.DeliveryDate}', orderDate = '{order.RentDate}', bikeID = '{order.Bike.ID}', renteeID = '{order.Rentee.ID}')";
+            bool result;
+
+            if (InsertDataToDB(query) >= 0)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region Delete from database
+        /// <summary>
+        /// Updates a rentee in the database depending on the id of the object 
+        /// </summary>
+        /// <param name="rentee">The rentee to update using the id</param>
+        /// <returns>Returns true if the object has been updated, otherwise it returns false</returns>
+        public bool DeleteRentee(Rentee rentee)
+        {
+            string query = $"delete from renters where id={rentee.ID}";
+            bool result;
+
+            if (InsertDataToDB(query) >= 0)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Updates a bike in the database depending on the id of the object 
+        /// </summary>
+        /// <param name="bike">The bike to update using the id</param>
+        /// <returns>Returns true if the object has been updated, otherwise it returns false</returns>
+        public bool DeleteBike(Bike bike)
+        {
+            string query = $"delete from bikes where id={bike.ID}";
+            bool result;
+
+            if (InsertDataToDB(query) >= 0)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Updates an order in the database depending on the id of the object 
+        /// </summary>
+        /// <param name="order">The order to update using the id</param>
+        /// <returns>Returns true if the object has been updated, otherwise it returns false</returns>
+        public bool DeleteOrder(Order order)
+        {
+            string query = $"delete from orders where id={order.ID}";
             bool result;
 
             if (InsertDataToDB(query) >= 0)

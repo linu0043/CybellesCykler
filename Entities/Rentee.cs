@@ -55,7 +55,7 @@ namespace Entities
 
         public override string ToString()
         {
-            return $"{name}, {phoneNumber}";
+            return $"ID{id} {name}";
         }
     }
 }
