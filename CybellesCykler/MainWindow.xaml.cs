@@ -46,15 +46,55 @@ namespace CybellesCykler
             }
         }
 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             if (tabSelect.SelectedIndex == 0)
             {
-                MessageBox.Show("lol");
+                if (dtgRentees.SelectedIndex != -1)
+                {
+                    EditRentee windowOne = new EditRentee(dtgRentees.SelectedItem as Rentee);
+
+                    if (windowOne.ShowDialog() == true)
+                    {
+                        FillRenteeList();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("You must select a rentee first", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            else
+            else if(tabSelect.SelectedIndex == 1)
             {
-                MessageBox.Show("skede");
+                if (dtgBikes.SelectedIndex != -1)
+                {
+                    EditBike windowTwo = new EditBike(dtgBikes.SelectedItem as Bike);
+
+                    if (windowTwo.ShowDialog() == true)
+                    {
+                        FillBikeList();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("You must select a bike first", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+        private void FillRenteeList()
+        {
+            RenteeList.Clear();
+            foreach (var rentee in dc.GetEntities("rentee"))
+            {
+                RenteeList.Add(rentee);
+            }
+        }
+        private void FillBikeList()
+        {
+            BikeList.Clear();
+            foreach (var bike in dc.GetEntities("bike"))
+            {
+                BikeList.Add(bike);
             }
         }
     }

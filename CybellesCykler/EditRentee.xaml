@@ -1,0 +1,19 @@
+﻿<Window x:Class="CybellesCykler.EditRentee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CybellesCykler"
+        mc:Ignorable="d"
+        Title="EditRentee" Height="183.811" Width="317.828">
+  <Grid>
+    <Label Content="Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+    <Label Content="Phone Number:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+    <Label Content="Address:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+    <TextBox x:Name="tbxName" HorizontalAlignment="Left" Height="23" Margin="59,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223"/>
+    <TextBox x:Name="tbxPhone" HorizontalAlignment="Left" Height="23" Margin="108,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174"/>
+    <TextBox x:Name="tbxAddress" HorizontalAlignment="Left" Height="23" Margin="70,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212"/>
+    <Button x:Name="btnUpdate" Content="Update rentee" HorizontalAlignment="Left" Margin="10,104,0,0" VerticalAlignment="Top" Width="272" Click="btnUpdate_Click"/>
+
+  </Grid>
+</Window>

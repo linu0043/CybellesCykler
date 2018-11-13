@@ -58,7 +58,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditBike.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditRentee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -77,8 +85,14 @@
     <Compile Include="CreateOrder.xaml.cs">
       <DependentUpon>CreateOrder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditBike.xaml.cs">
+      <DependentUpon>EditBike.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditOrder.xaml.cs">
       <DependentUpon>EditOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditRentee.xaml.cs">
+      <DependentUpon>EditRentee.xaml</DependentUpon>
     </Compile>
     <Compile Include="Orders.xaml.cs">
       <DependentUpon>Orders.xaml</DependentUpon>
