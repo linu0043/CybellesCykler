@@ -7,14 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="535.271">
   <Grid>
-    <Button x:Name="BtnShowOrders" Content="Orders" HorizontalAlignment="Left" Margin="364,10,0,0" VerticalAlignment="Top" Width="75" Click="BtnShowOrders_Click"/>
+    <Button x:Name="BtnShowOrders" Content="Orders" HorizontalAlignment="Left" Margin="444,142,0,0" VerticalAlignment="Top" Width="75" Click="BtnShowOrders_Click"/>
     <Button Content="Add" HorizontalAlignment="Left" Margin="444,37,0,0" VerticalAlignment="Top" Width="75"/>
     <Button Content="Delete" HorizontalAlignment="Left" Margin="444,60,0,0" VerticalAlignment="Top" Width="75"/>
     <Button Content="Edit" HorizontalAlignment="Left" Margin="444,84,0,0" VerticalAlignment="Top" Width="75"/>
     <TabControl HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="429">
       <TabItem Header="Renters">
         <Grid Background="#FFE5E5E5">
-          <DataGrid HorizontalAlignment="Left" AutoGenerateColumns="False" Height="271" VerticalAlignment="Top" Width="423" ItemsSource="{Binding Path=RenteeList}">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="134*"/>
+            <ColumnDefinition Width="289*"/>
+          </Grid.ColumnDefinitions>
+          <DataGrid HorizontalAlignment="Left" AutoGenerateColumns="False" Height="271" VerticalAlignment="Top" Width="423" ItemsSource="{Binding Path=RenteeList}" Grid.ColumnSpan="2">
             <DataGrid.Columns>
               <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}"/>
               <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}"/>

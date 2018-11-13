@@ -23,15 +23,15 @@ namespace CybellesCykler
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Rentee> RenteeList { get; }
-        public ObservableCollection<Bike> BikeList { get; }
+        public ObservableCollection<IPersistable> RenteeList { get; }
+        public ObservableCollection<IPersistable> BikeList { get; }
         DataController dc = new DataController(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CykelDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
         public MainWindow()
         {
-            RenteeList = new ObservableCollection<Rentee>();
-            BikeList = new ObservableCollection<Bike>();
-
+            RenteeList = new ObservableCollection<IPersistable>(dc.GetEntities("rentee"));
+            BikeList = new ObservableCollection<IPersistable>(dc.GetEntities("bike"));
+            
             InitializeComponent();
             DataContext = this;
 
