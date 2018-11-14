@@ -243,10 +243,10 @@ namespace DataAccess
         /// <returns>Returns true if the object has been updated, otherwise it returns false</returns>
         public bool UpdateRentee(Rentee rentee)
         {
-            string query = $"update Renters set name = '{rentee.Name}', phoneNumber = '{rentee.PhoneNumber}', address = '{rentee.Address}', registerDate = '{rentee.RegisterDate}'";
+            string query = $"update Renters set name = '{rentee.Name}', phoneNumber = '{rentee.PhoneNumber}', address = '{rentee.Address}', registerDate = '{rentee.RegisterDate}' where id={rentee.ID}";
             bool result;
 
-            if (InsertDataToDB(query) >= 0)
+            if (InsertDataToDB(query) > 0)
             {
                 result = true;
             }
@@ -264,10 +264,10 @@ namespace DataAccess
         /// <returns>Returns true if the object has been updated, otherwise it returns false</returns>
         public bool UpdateBike(Bike bike)
         {
-            string query = $"update Bikes set bikeDescription = '{bike.BikeDesc}', pricePerDay = '{bike.PricePerDay}', bikeType = '{bike.Kind}'";
+            string query = $"update Bikes set bikeDescription = '{bike.BikeDesc}', pricePerDay = '{bike.PricePerDay}', bikeType = '{bike.Kind}' where id={bike.ID}";
             bool result;
 
-            if (InsertDataToDB(query) >= 0)
+            if (InsertDataToDB(query) > 0)
             {
                 result = true;
             }
@@ -285,10 +285,10 @@ namespace DataAccess
         /// <returns>Returns true if the object has been updated, otherwise it returns false</returns>
         public bool UpdateOrder(Order order)
         {
-            string query = $"update Orders set deliveryDate = '{order.DeliveryDate}', orderDate = '{order.RentDate}', bikeID = '{order.Bike.ID}', renteeID = '{order.Rentee.ID}'";
+            string query = $"update Orders set deliveryDate = '{order.DeliveryDate}', orderDate = '{order.RentDate}', bikeID = '{order.Bike.ID}', renteeID = '{order.Rentee.ID}' where id={order.ID}";
             bool result;
 
-            if (InsertDataToDB(query) >= 0)
+            if (InsertDataToDB(query) > 0)
             {
                 result = true;
             }
@@ -312,7 +312,7 @@ namespace DataAccess
             string query = $"delete from renters where id={rentee.ID}";
             bool result;
 
-            if (InsertDataToDB(query) >= 0)
+            if (InsertDataToDB(query) > 0)
             {
                 result = true;
             }
